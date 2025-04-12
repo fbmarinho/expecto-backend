@@ -16,7 +16,7 @@ export default function UserCard({ user }: { user: users }) {
         />
         <div className="space-y-1">
           <p className="font-medium leading-none">{user.name}</p>
-          <p className="text-sm text-gray-500">{user.email}</p>
+          <p className="text-sm text-gray-400">{user.email}</p>
         </div>
       </div>
       <p className="text-sm text-gray-500">{timeAgo(user.createdAt)}</p>
