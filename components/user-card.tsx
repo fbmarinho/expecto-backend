@@ -5,7 +5,7 @@ import { users } from "@prisma/client";
 
 export default function UserCard({ user }: { user: users }) {
   return (
-    <div key={user.name} className="flex items-center justify-between py-3">
+    <div className="flex items-center justify-between py-3">
       <div className="flex items-center space-x-4">
         <Image
           src={user.image}

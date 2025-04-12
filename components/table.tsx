@@ -20,8 +20,8 @@ export default async function Table() {
         <RefreshButton />
       </div>
       <div className="divide-y divide-gray-900/5">
-        {users.map((user) => (
-          <UserCard user={user} />
+        {users.map((user, i) => (
+          <UserCard key={i} user={user} />
         ))}
       </div>
     </div>
