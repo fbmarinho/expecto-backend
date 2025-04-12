@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
-import { timeAgo } from "@/lib/utils";
-import Image from "next/image";
+
 import RefreshButton from "./refresh-button";
+import UserCard from "./user-card";
 
 export default async function Table() {
   const startTime = Date.now();
@@ -21,18 +21,7 @@ export default async function Table() {
       </div>
       <div className="divide-y divide-gray-900/5">
         {users.map((user) => (
-          <div
-            key={user.name}
-            className="flex items-center justify-between py-3"
-          >
-            <div className="flex items-center space-x-4">
-              <div className="space-y-1">
-                <p className="font-medium leading-none">{user.name}</p>
-                <p className="text-sm text-gray-500">{user.email}</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-500">{timeAgo(user.createdAt)}</p>
-          </div>
+          <UserCard user={user} />
         ))}
       </div>
     </div>
