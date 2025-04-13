@@ -1,18 +1,18 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { Container } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 
-export async function create(
-  initialState: { message: string, error: string },
-  formData: FormData
-) {
+type StateType = {
+  message: string;
+  error: string;
+};
+
+export async function create(prevState: StateType, formData: FormData) {
   // Mutate data
   if (!formData || formData.get("name") == "") {
     return {
       message: "",
-      error: "empty",
+      error: "Não pode ficar em branco",
     };
   }
 
@@ -28,5 +28,8 @@ export async function create(
 
   const response = await prisma.container.create({ data: container });
 
-  revalidatePath("/containers")
+  return {
+    message: "ok",
+    error: "",
+  };
 }
