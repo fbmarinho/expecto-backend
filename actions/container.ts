@@ -5,7 +5,7 @@ import { Container } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export async function create(
-  initialStat: { message: string },
+  initialState: { message: string, error: string },
   formData: FormData
 ) {
   // Mutate data
