@@ -2,7 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { Container } from "@prisma/client";
-import { error } from "console";
+import { revalidatePath } from "next/cache";
 
 export async function create(
   initialStat: { message: string },
@@ -17,19 +17,16 @@ export async function create(
   }
 
   const container: Container = {
-    id: 1,
-    type: formData.get("type") as string,
+    type: "container",
     name: formData.get("name") as string,
-    serial: formData.get("serial") as string,
-    dimensions: formData.get("dimensions") as string,
-    loadtest: new Date(Date.parse(formData.get("loadtest") as string)),
+    serial: "222",
+    dimensions: "11 x 1 x 1",
+    loadtest: new Date(Date.now()),
     expiration: 12,
     createdAt: new Date(Date.now()),
   };
 
   const response = await prisma.container.create({ data: container });
 
-  return {
-    message: "ok",
-  };
+  revalidatePath("/containers")
 }
