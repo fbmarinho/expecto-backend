@@ -16,7 +16,7 @@ export async function create(
     };
   }
 
-  const container: Container = {
+  const container = {
     type: "container",
     name: formData.get("name") as string,
     serial: "222",
